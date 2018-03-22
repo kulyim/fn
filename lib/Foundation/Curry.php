@@ -6,6 +6,23 @@ class Curry extends Partial
 	{
 		return parent::__construct($f,...$args);
 	}
+
+    public function close()
+    {
+        $param_cnt = 0;
+        for ( $i = 0; $i< $this->args_cnt; $i++ ) {
+            if ($this->args[$i]  === self::NOTSET ) {
+                $param_cnt++;
+            }
+        }
+        //$func = _callers($param_cnt);
+        $func = function(...$args){
+            return $this->call(func_get_args());
+            
+        };
+        return \Closure::bind($func, $this);
+    }
+
 	public function call($args){
 		$as = $this->the_args($args);
 		$func = $this->func;

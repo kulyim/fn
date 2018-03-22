@@ -41,7 +41,7 @@ class SequenceTest extends TestCase
 	public function testSequence2()
 	{
 		$composed = sequence('appendA', 'appendB');
-	 $this->assertEquals('AB' ,$composed(""));
+	 $this->assertEquals('XAB' ,$composed("X"));
 
 	}
 	public function testCompose3()

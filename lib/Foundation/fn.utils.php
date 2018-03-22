@@ -94,11 +94,10 @@ function partial($FN)
  *
  * can call curry with as many arguments as necessary
  * function take3($a,$b,$c){ ... }
- * $take3 = curry('take3','Aarg','Barg') // returns function with two args alread supplied
+ * $take3 = curry('take3','Aarg','Barg') // returns function with two args already supplied
  * $res = $take3('Carg');
  *
- * @param  callable $somefunction
- * @param  mixed[] ... 0 to arity number of function args
+ * @param  callables one or more callables
  * @return callable Returns curried callable
  */
 function curry($FN)

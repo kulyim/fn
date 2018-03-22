@@ -1,6 +1,5 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use FN\FOUNDATION\Curry;
 use function FN\FOUNDATION\curry;
 
 function defCurryVal($a, $b, $c="default")
@@ -15,6 +14,14 @@ class CurryTest extends TestCase
 		$this->assertInstanceOf(Closure::class,$curried);
 
 	}
+
+    public function testCanCurry()
+    {
+        $curried  = curry('defCurryVal');
+        $curryA = $curried('theA');
+        $res = $curryA('theB');
+        $this->assertEquals($res,'a:theA,b:theB,c:default');
+    }
 
 	public function testCanCurryMissingArg()
 	{
