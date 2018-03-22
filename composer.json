@@ -1,0 +1,9 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload":{
+        "psr-4":{"FN\\FOUNDATION\\":"lib/Foundation"},
+        "files":["lib/Foundation/fn.utils.php"]
+    }
+}
