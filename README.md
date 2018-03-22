@@ -35,17 +35,18 @@ Returns new function that takes one argument (or more) until
 argument list is exhausted, then returns value
 
 ```php
-function go($a,$b,$c){
+function go($a,$b,$c)
+{
     return join("*",func_get_args());
-
 }
 //curry
 $go = curry('go');
 $goa = $go('a');
 $gob = $goa('b');
 $result  = $gob('c');
-print_r($result);
-
+echo $result;
+//prints a*b*c
+```
 ## compose
 compose(...callables) //-> newFunc
 Right to left function composition
