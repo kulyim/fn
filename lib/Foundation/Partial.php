@@ -25,16 +25,26 @@ class Partial
             throw new \Exception('not callable'.":".print_r($func, true));
         }
         $this->func = $func;
-        $rf  = is_array($func) ? new \ReflectionMethod(...$func)
-        : new \ReflectionFunction($func);
-        $cnt = $rf->getNumberOfRequiredParameters();
-        //can provide more than required number of args, for defaults
-        $a_cnt = count($rest);
-        $the_count = ($a_cnt > $cnt) ? $a_cnt : $cnt;
-        $this->args_cnt = $the_count;
+        $cnt = $this->required_params_cnt($func);
+        $this->args_cnt = $cnt;
+        $pre_filled = array_fill(0,  $cnt, self::NOTSET);
         list($rest) = $rest;
-        $pre_filled = array_fill(0,  $the_count, self::NOTSET);
         $this->args =  array_replace($pre_filled, is_array($rest) ? $rest: [$rest]);
+    }
+
+    /**
+     * get number of required callable arguments
+     * 
+     * @param callable $func two element array or closure
+     * @return numbern Number of required arguments
+     */
+
+    public function required_params_cnt($func)
+    {
+        $rf =  is_array($func) ? new \ReflectionMethod(...$func)
+        : new \ReflectionFunction($func);
+        return $rf->getNumberOfRequiredParameters();
+
     }
 
     /**
