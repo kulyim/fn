@@ -8,6 +8,10 @@ function defVal($a, $b, $c="default")
 	return "a:$a,b:$b,c:$c";
 }
 
+function takes2($a,$b)
+{
+    return "a:$a,b:$b";
+}
 function listVal($list,$sep,$c='x')
 {
 	return join($sep,$list) . $c;
@@ -43,7 +47,6 @@ class PartialTest extends TestCase
 		$res = $part_dfA();
 		$this->assertEquals($res,'a:theA,b:theB,c:default');
 
-
 	}
 
 	public function testOverrideDefault()
@@ -61,5 +64,14 @@ class PartialTest extends TestCase
 		$this->assertEquals($res,'a-b-cx');
 
 	}
+    /**
+     * @expectedException ArgumentCountError
+     */
+    public function testArityIsPreserved()
+    {
+        $takes1 = partial('takes2','a');
+        //throws argument error expects 1 arg
+        $takes1();
+    }
 
 }
