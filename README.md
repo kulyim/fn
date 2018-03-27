@@ -1,7 +1,10 @@
 # fn
-Exploring functional php
+YA FP in php
 
-Add 'partial','curry', 'compose' and 'sequence' operators
+'partial','curry', 'compose' and 'sequence'
+
+Implementations of the above in php
+
 
 ## partial
 partial(callable, ...$args) //-> newFunc
